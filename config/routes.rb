@@ -8,4 +8,11 @@ NewsPortal::Application.routes.draw do
 
   resources :posts
   root to: "welcome#index"
+
+  namespace :admin do
+    resources :posts, except: [:new, :create, :show] do
+      get 'publish', on: :member
+      get 'unpublish', on: :member
+    end
+  end
 end
