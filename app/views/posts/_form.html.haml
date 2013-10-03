@@ -1,4 +1,12 @@
 = form_for @post, :html => { :class => 'form-horizontal' } do |f|
+  -if @post.errors.any?
+    .alert.alert-error
+      %h3
+        =pluralize(@post.errors.count, 'error') 
+      %ul
+        -@post.errors.full_messages.each do |e|
+          %li 
+            =e
   .control-group
     = f.label :title, :class => 'control-label'
     .controls

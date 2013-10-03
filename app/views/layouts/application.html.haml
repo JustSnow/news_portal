@@ -15,14 +15,18 @@
     = csrf_meta_tags
   %body
     .container
-      .row
+      .row#main_block
         = render 'shared/menu'
-        .span12#main_block
+        .span9
           - flash.each do |name, msg|
             = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do
               %a.close{:href => "#", :data => {:dismiss => "alert"} } ×
               = msg
           = yield
+        .span3
+          .well.sidebar-nav.sidebar-nav-fixed
+            %ul.nav.nav-list
+              %li test
       %hr
       %footer
         %p &copy; Company 2012

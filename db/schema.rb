@@ -50,8 +50,11 @@ ActiveRecord::Schema.define(:version => 20131003081357) do
     t.text     "full"
     t.text     "intro"
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "moderation"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "redactor_assets", :force => true do |t|
