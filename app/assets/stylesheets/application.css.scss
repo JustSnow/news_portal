@@ -12,3 +12,10 @@
  *= require_tree .
  *= require redactor-rails
  */
+
+@import "bootstrap.scss";
+@import 'bootstrap-responsive';
+
+#main_block {
+  padding-top: 50px;
+}

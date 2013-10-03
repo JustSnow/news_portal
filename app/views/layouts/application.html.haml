@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title Bootstrap, from Twitter
+    %title Crowdsourcing news portal
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
@@ -15,11 +15,14 @@
     = csrf_meta_tags
   %body
     .container
-      - flash.each do |name, msg|
-        = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do
-          %a.close{:href => "#", :data => {:dismiss => "alert"} } ×
-          = msg
-      = yield
+      .row
+        = render 'shared/menu'
+        .span12#main_block
+          - flash.each do |name, msg|
+            = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do
+              %a.close{:href => "#", :data => {:dismiss => "alert"} } ×
+              = msg
+          = yield
       %hr
       %footer
         %p &copy; Company 2012

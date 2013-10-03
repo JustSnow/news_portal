@@ -1,7 +1,4 @@
+- model_class = Post
 .page-header
-  = link_to posts_path, :class => 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  %h1 New post
-
-= render 'form'
+  %h3=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+= render :partial => "form"

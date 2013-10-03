@@ -1,0 +1,23 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      = link_to '#', {class: 'btn btn-navbar', data: {toggle: 'collapse', target: '.nav-collapse'}} do
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "Новостной портал", root_path, class: 'brand'
+      - if user_signed_in?
+        .nav-collapse
+          %ul.nav.pull-right
+            %li.dropdown.user-avatar
+              .btn-group
+                = link_to '#', {class: 'btn btn-info dropdown-toggle', data: {toggle: 'dropdown'}} do
+                  = content_tag(:span, raw(content_tag(:i, '', class: 'icon-user') + current_user.email))
+                %ul.dropdown-menu
+                  %li= link_to 'Редактировать', [:edit, current_user]
+                  %li= link_to 'Выйти', destroy_user_session_path, method: :delete
+      - else
+        .nav-collapse.collapse
+          %ul.nav.pull-right
+            %li=link_to 'Вход', new_user_session_path
+            %li=link_to 'Регистрация', new_user_registration_path

@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/decioferreira/bootstrap-generators.git
-  revision: 4e5e0e3aa463dd68df31139ca98b5e00c4377b45
-  specs:
-    bootstrap-generators (3.0.0)
-      railties (>= 3.1)
-
-GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: dc81f562b3c4413d8ac6c373b5ae62411f5bac74
   specs:
@@ -69,6 +62,8 @@ GEM
     arel (3.0.2)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
+    bootstrap-sass (2.3.2.2)
+      sass (~> 3.2)
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
@@ -247,7 +242,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  bootstrap-generators!
+  bootstrap-sass
   capistrano
   carrierwave
   coffee-rails (~> 3.2.1)

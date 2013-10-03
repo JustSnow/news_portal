@@ -1,16 +1,21 @@
+- model_class = Post
 .page-header
-  = link_to posts_path, :class => 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  = link_to edit_post_path(@post), :class => 'btn btn-primary' do
-    %span.glyphicon.glyphicon-pencil
-    Edit
-  %h1 Show post
+  %h3=t '.title', :default => model_class.model_name.human.titleize
 
-%dl.dl-horizontal
-  %dt Full:
-  %dd= @post.full
-  %dt Intro:
-  %dd= @post.intro
-  %dt Title:
-  %dd= @post.title
+%p
+  %strong= model_class.human_attribute_name(:full) + ':'
+  %br
+  = @post.full
+%p
+  %strong= model_class.human_attribute_name(:intro) + ':'
+  %br
+  = @post.intro
+%p
+  %strong= model_class.human_attribute_name(:title) + ':'
+  %br
+  = @post.title
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
