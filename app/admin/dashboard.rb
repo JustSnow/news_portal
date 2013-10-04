@@ -8,19 +8,9 @@ ActiveAdmin.register_page "Dashboard" do
     #
     columns do
       column do
-        panel "Recent Posts" do
-          ul do
-            Post.limit(5).map do |post|
-              li link_to(post.title, [:edit, :admin, post])
-            end
-          end
-        end
-      end
-
-      column do
-        panel "Info" do
-          para "Welcome to ActiveAdmin."
-        end
+        para "Count Posts (#{Post.all.size})"    
+        para "Count User (#{User.all.size})"
+        para "Count User Today (#{User.where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).size})"
       end
     end
   end # content

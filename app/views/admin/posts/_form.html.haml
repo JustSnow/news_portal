@@ -1,4 +1,4 @@
-= form_for @post, :html => { :class => 'form-horizontal' } do |f|
+= form_for [:admin, @post], :html => { :class => 'form-horizontal' } do |f|
   -if @post.errors.any?
     .alert.alert-error
       %h3
@@ -21,4 +21,4 @@
       = f.text_area :full, :class => 'text_area redactor'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_posts_path, :class => 'btn'
