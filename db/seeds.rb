@@ -7,4 +7,22 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-Category.create(:name => 'test category', :admin_user_id => 1)
+c = Category.create(:name => 'test category', :admin_user_id => 1)
+
+u = User.create(
+	:email => 't@t.ru',
+  :password => '123123aA', 
+  :password_confirmation => '123123aA'
+ )
+
+3.times do |n|
+	p = u.posts.build(
+		:moderation => 2,
+		:title => "test title #{n}", 
+		:intro => "test intro #{n}", 
+		:full => "test full #{n}", 
+		:category_id => c.id
+	)
+
+	p.save
+end

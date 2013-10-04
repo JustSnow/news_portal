@@ -11,6 +11,7 @@ NewsPortal::Application.routes.draw do
 
   root to: "welcome#index"
   get 'tags/:tag', to: 'welcome#index', as: :tag
+  get '/search', to: 'welcome#index', as: :search
 
   resources :posts
 end

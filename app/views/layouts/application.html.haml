@@ -22,6 +22,10 @@
             = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do
               %a.close{:href => "#", :data => {:dismiss => "alert"} } ×
               = msg
+          #search
+            = form_tag search_path, { method: :get, class: 'search-form' } do
+              = text_field_tag :search, params[:search]
+              = submit_tag "Поиск!"
           = yield
         - if !@categories.empty?
           .span3

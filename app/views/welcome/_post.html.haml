@@ -1,3 +1,4 @@
 .well
+	%p.pull-right= post.created_at.strftime('%F %T')
 	%h3= link_to post.title, post
 	.content_intro= raw post.intro

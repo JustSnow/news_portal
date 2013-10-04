@@ -153,6 +153,7 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     orm_adapter (0.4.0)
+    pg (0.17.0)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.3)
@@ -276,6 +277,7 @@ DEPENDENCIES
   mailcatcher
   mini_magick
   mysql2
+  pg
   quiet_assets
   rails (= 3.2.13)
   redactor-rails
@@ -283,7 +285,6 @@ DEPENDENCIES
   sidekiq
   sinatra
   slim
-  sqlite3
   thinking-sphinx
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
