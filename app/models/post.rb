@@ -8,8 +8,9 @@ class Post < ActiveRecord::Base
   scope :accepted_posts, -> { where('moderation = ?', 2) }
 
   belongs_to :user
+  belongs_to :category
 
-  attr_accessible :full, :intro, :title
+  attr_accessible :full, :intro, :title, :category_id
 
   validates_presence_of :title, :intro, :full
 end

@@ -14,5 +14,7 @@ NewsPortal::Application.routes.draw do
       get 'publish', on: :member
       get 'unpublish', on: :member
     end
+
+    resources :categories, except: [:show]
   end
 end

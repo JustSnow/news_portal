@@ -1,4 +1,6 @@
 ActiveAdmin.register Post do
+  menu :priority => 2
+
   index do
     column :id
     column :moderation

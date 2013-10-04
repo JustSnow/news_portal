@@ -23,10 +23,12 @@
               %a.close{:href => "#", :data => {:dismiss => "alert"} } ×
               = msg
           = yield
-        .span3
-          .well.sidebar-nav.sidebar-nav-fixed
-            %ul.nav.nav-list
-              %li test
+        - if !@categories.empty?
+          .span3
+            .well.sidebar-nav.sidebar-nav-fixed
+              %ul.nav.nav-list
+                - @categories.each do |category|
+                  %li= link_to category.name, root_path(category: category.id) 
       %hr
       %footer
         %p &copy; Company 2012
