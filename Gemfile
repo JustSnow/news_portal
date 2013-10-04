@@ -24,6 +24,11 @@ gem "activeadmin", github: "gregbell/active_admin"
 gem 'redactor-rails'
 gem 'acts-as-taggable-on'
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'foreman'
+
 group :development do
   gem 'quiet_assets'
   gem 'capistrano'
