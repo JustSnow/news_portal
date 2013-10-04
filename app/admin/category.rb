@@ -1,8 +1,6 @@
 ActiveAdmin.register Category do
   menu :priority => 3
 
-  scope :all
-
   index do
     column :id
     column :name do |category|

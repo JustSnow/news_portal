@@ -13,7 +13,7 @@ class Post < ActiveRecord::Base
   belongs_to :admin
   belongs_to :category
 
-  attr_accessible :full, :intro, :title, :category_id, :tag_list
+  attr_accessible :full, :intro, :title, :category_id, :tag_list, :moderation
 
   validates_presence_of :title, :intro, :full, :category_id
 end

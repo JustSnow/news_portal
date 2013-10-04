@@ -10,13 +10,4 @@ NewsPortal::Application.routes.draw do
   get 'tags/:tag', to: 'welcome#index', as: :tag
 
   resources :posts
-
-  namespace :admin do
-    resources :posts do
-      get 'publish', on: :member
-      get 'unpublish', on: :member
-    end
-
-    # resources :categories
-  end
 end

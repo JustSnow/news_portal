@@ -48,9 +48,12 @@ ActiveRecord::Schema.define(:version => 20131004064235) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "admin_user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
+
+  add_index "categories", ["admin_user_id"], :name => "index_categories_on_admin_user_id"
 
   create_table "posts", :force => true do |t|
     t.text     "full"
