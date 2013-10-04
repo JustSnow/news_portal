@@ -23,6 +23,10 @@
     = f.label :full, :class => 'control-label'
     .controls
       = f.text_area :full, :class => 'text_area redactor'
+  .control-group
+    = f.label :tag_list, "Tags (separated by commas)"
+    .controls
+      = f.text_field :tag_list
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn'

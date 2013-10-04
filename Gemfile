@@ -22,6 +22,7 @@ gem "carrierwave"
 gem "mini_magick"
 gem "activeadmin", github: "gregbell/active_admin"
 gem 'redactor-rails'
+gem 'acts-as-taggable-on'
 
 group :development do
   gem 'quiet_assets'

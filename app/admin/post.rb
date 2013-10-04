@@ -15,4 +15,20 @@ ActiveAdmin.register Post do
   filter :created_at
 
   form partial: "form"
+
+  controller do
+    def new
+      @post = current_admin_user.posts.build
+    end
+
+    def create
+      @post = current_admin_user.posts.build(params[:post])
+      
+      if @post.save
+        redirect_to [:edit, :admin, @post], notice: 'Post was successfully created.'
+      else
+        render 'edit'
+      end
+    end
+  end
 end

@@ -19,6 +19,10 @@
   %br
   = @post.category.name
 
+%p
+  Tags: 
+  = raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
+
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn'

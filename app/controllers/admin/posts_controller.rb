@@ -5,6 +5,20 @@ class Admin::PostsController < Admin::HomeController
     @posts = Post.all
   end
 
+  def new
+    @post = current_admin_user.posts.build
+  end
+
+  def create
+    @post = current_admin_user.posts.build(params[:post])
+    
+    if @post.save
+      redirect_to @post, notice: 'Post was successfully created.'
+    else
+      render 'edit'
+    end
+  end
+
   def update
     if @post.update_attributes(params[:post])
       redirect_to [:edit, :admin, @post], notice: "Информация о посте '#{@post.content.name}' успешно обновлена"

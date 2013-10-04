@@ -6,15 +6,17 @@ NewsPortal::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  resources :posts
   root to: "welcome#index"
+  get 'tags/:tag', to: 'welcome#index', as: :tag
+
+  resources :posts
 
   namespace :admin do
-    resources :posts, except: [:new, :create, :show] do
+    resources :posts do
       get 'publish', on: :member
       get 'unpublish', on: :member
     end
 
-    resources :categories, except: [:show]
+    # resources :categories
   end
 end
