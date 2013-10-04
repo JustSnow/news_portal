@@ -4,7 +4,7 @@ class Category < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   belongs_to :admin
 
-  attr_accessible :name
+  attr_accessible :name, :admin_user_id
 
   validates_presence_of :name
 end

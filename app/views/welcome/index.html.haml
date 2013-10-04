@@ -1,2 +1,3 @@
 %h3 main page
-= debug @posts
+= render partial: 'post', collection: @posts, as: :post
+= will_paginate @posts
