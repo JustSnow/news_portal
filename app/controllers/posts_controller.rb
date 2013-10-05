@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :check_user, except: [:index, :show]
+  before_filter :find_post, except: [:index, :new, :create, :feed]
 
   # GET /posts
   # GET /posts.json
@@ -15,8 +16,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
@@ -36,7 +35,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
   end
 
   # POST /posts
@@ -58,8 +56,6 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.json
   def update
-    @post = Post.find(params[:id])
-
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -74,7 +70,6 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
 
     respond_to do |format|
@@ -92,8 +87,22 @@ class PostsController < ApplicationController
     end
   end
 
+  def comments
+    user_id = (current_user.nil?)? 0 : current_user.id
+    @comment = Comment.build_from @post, user_id, params[:comment]
+    if @comment.save
+      redirect_to @post, notice: 'Comment was successfully added'
+    else
+      redirect_to @post, alert: 'Error add comment'
+    end
+  end
+
   private 
     def check_user
       :authenticate_user! unless admin_user_signed_in?
+    end
+
+    def find_post
+       @post = Post.find(params[:id])
     end
 end

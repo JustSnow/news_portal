@@ -14,5 +14,7 @@ NewsPortal::Application.routes.draw do
   get '/search', to: 'welcome#index', as: :search
   get '/feed', to: 'posts#feed', as: :feed
 
-  resources :posts
+  resources :posts do
+    post 'comments', on: :member
+  end
 end

@@ -32,6 +32,9 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'foreman'
 
+gem 'awesome_nested_set'
+gem 'acts_as_commentable_with_threading'
+
 group :development do
   gem 'quiet_assets'
   gem 'capistrano'

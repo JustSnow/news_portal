@@ -1,4 +1,5 @@
 - model_class = Post
+= debug @post.comment_threads
 .page-header
 	%h3= @post.title
 .well
@@ -13,3 +14,8 @@
 		= link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn'
 		= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn'
 		= link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+= form_tag comments_post_path do 
+	= hidden_field_tag "id", @post.id
+	= text_area_tag "comment[comment]"
+	= submit_tag "Post Comment"
