@@ -1,0 +1,5 @@
+.nav-collapse.collapse
+  %ul.nav.pull-right
+    %li= link_to 'Вход', new_user_session_path
+    %li= link_to 'Регистрация', new_user_registration_path
+    %li= link_to image_tag('facebook.png'), user_omniauth_authorize_path(:facebook)

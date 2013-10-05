@@ -1,0 +1,4 @@
+omniauth:
+  facebook:
+    client_id: '742037965822982'
+    cliend_secret: '26780ad7314212085d22d97e853648d6'
