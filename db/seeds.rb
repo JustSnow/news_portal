@@ -15,6 +15,12 @@ u = User.create(
   :password_confirmation => '123123aA'
  )
 
+a = AdminUser.create(
+	:email => 'admin@example.com',
+	:password => 'password',
+	:password_confirmation => 'password'
+	)
+
 3.times do |n|
 	p = u.posts.build(
 		:moderation => 2,

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :check_user, except: [:index, :show]
 
   # GET /posts
   # GET /posts.json
@@ -82,4 +82,9 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private 
+    def check_user
+      :authenticate_user! unless admin_user_signed_in?
+    end
 end
