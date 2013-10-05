@@ -83,6 +83,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def feed
+    @posts = Post.all
+
+    respond_to do |format|
+      format.html
+      format.rss { render layout: false }
+    end
+  end
+
   private 
     def check_user
       :authenticate_user! unless admin_user_signed_in?
