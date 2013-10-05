@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 NewsPortal::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   mount RedactorRails::Engine => '/redactor_rails'
   mount Sidekiq::Web, at: "/sidekiq"

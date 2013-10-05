@@ -16,6 +16,9 @@ gem 'mysql2'
 gem 'thinking-sphinx'
 
 gem 'devise', git: 'git://github.com/plataformatec/devise.git'
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 gem 'haml-rails'
 gem 'will_paginate'
 gem "carrierwave"

@@ -17,6 +17,7 @@
                 %ul.dropdown-menu
                   %li= link_to 'Dashboard', admin_dashboard_path
                   %li= link_to 'Все посты', admin_posts_path
+                  %li= link_to 'Sidekiq Web', sidekiq_web_path, {target: '_blank'}
                   %li= link_to 'Выйти', destroy_admin_user_session_path, method: :delete
 
       - if user_signed_in?
@@ -33,5 +34,6 @@
       - else
         .nav-collapse.collapse
           %ul.nav.pull-right
-            %li=link_to 'Вход', new_user_session_path
-            %li=link_to 'Регистрация', new_user_registration_path
+            %li= link_to 'Вход', new_user_session_path
+            %li= link_to 'Регистрация', new_user_registration_path
+            %li= link_to image_tag('facebook.png'), user_omniauth_authorize_path(:facebook)
