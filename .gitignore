@@ -8,7 +8,7 @@
 /.bundle
 
 config/database.yml
-config/oauth.yml
+# config/oauth.yml
 db/sphinx
 
 # Ignore all logfiles and tempfiles.
