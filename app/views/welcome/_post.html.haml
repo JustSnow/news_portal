@@ -2,3 +2,4 @@
 	%p.pull-right= post.created_at.strftime('%F %T')
 	%h3= link_to post.title, post
 	.content_intro= raw post.intro
+	= link_to 'delete post', post_path(post), method: :delete, remote: true, confirm: 'Are you shure?', class: 'delete_post btn btn-mini btn-danger' if admin_user_signed_in?
