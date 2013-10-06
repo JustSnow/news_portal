@@ -13,6 +13,7 @@ NewsPortal::Application.routes.draw do
   get 'tags/:tag', to: 'welcome#index', as: :tag
   get '/search', to: 'welcome#index', as: :search
   get '/feed', to: 'posts#feed', as: :feed
+  delete 'delete_comment/:id', to: 'posts#delete_comment', as: :delete_comment
 
   resources :posts do
     post 'comments', on: :member

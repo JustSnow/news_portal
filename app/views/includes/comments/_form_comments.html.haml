@@ -1,0 +1,4 @@
+= form_tag (f_action.nil?)? comments_post_path : comments_post_path(replay: f_action) do 
+	= hidden_field_tag "id", @post.id
+	= text_area_tag "comment[comment]", '', {rows: 4, maxlength: 100, class: 'redex'}
+	= submit_tag "Post Comment", class: 'btn'

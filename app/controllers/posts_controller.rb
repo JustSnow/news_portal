@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_filter :check_user, except: [:index, :show]
-  before_filter :find_post, except: [:index, :new, :create, :feed]
+  before_filter :find_post, except: [:index, :new, :create, :feed, :delete_comment]
 
   # GET /posts
   # GET /posts.json
@@ -89,12 +89,22 @@ class PostsController < ApplicationController
 
   def comments
     user_id = (current_user.nil?)? 0 : current_user.id
-    @comment = Comment.build_from @post, user_id, params[:comment]
+    @comment = Comment.build_from @post, user_id, params[:comment][:comment]
+    
     if @comment.save
+      if params[:replay]
+        @parent_comment = Comment.find(params[:replay])
+        @comment.move_to_child_of(@parent_comment)
+      end
       redirect_to @post, notice: 'Comment was successfully added'
     else
       redirect_to @post, alert: 'Error add comment'
     end
+  end
+
+  def delete_comment
+    @comment = Comment.find(params[:id])
+    @comment.destroy
   end
 
   private 

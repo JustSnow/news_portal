@@ -1,0 +1,6 @@
+%ul
+	- parent_comment.children.each do |p_comment_child|
+		%li= p_comment_child.body
+		= render 'includes/comments/form_comments', f_action: p_comment_child.id
+		- if p_comment_child.has_children?
+			= render 'includes/comments/child_comment', parent_comment: p_comment_child
