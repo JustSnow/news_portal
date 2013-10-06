@@ -1,0 +1,9 @@
+%li
+	= comment.body
+	= link_to 'delete', delete_comment_path(comment), method: :delete, confirm: 'Are you shure?', class: 'delete_comment', remote: true if admin_user_signed_in?
+	%br
+	= link_to 'replay comment', '#', class: 'replay_comments'
+	.replay_form
+		= render 'includes/comments/form_comments', f_action: comment.id
+	- if comment.has_children?
+		= render 'includes/comments/child_comment', parent_comment: comment

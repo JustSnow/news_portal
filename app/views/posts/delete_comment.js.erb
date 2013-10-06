@@ -1,0 +1,3 @@
+$('.delete_comment').on('ajax:complete', function() {
+	$(this).parent('li').fadeOut().remove();
+});

@@ -15,3 +15,10 @@
 //= require bootstrap
 //= require_tree .
 //= require redactor-rails
+
+$(document).ready(function() {
+	$('.replay_comments').on('click', function(e) {
+		e.preventDefault();
+		$(this).next('.replay_form').slideToggle();
+	});
+});

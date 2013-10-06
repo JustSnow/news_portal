@@ -1,8 +1,7 @@
 - model_class = Post
 .page-header
 	%h3= @post.title
-.well
-	= raw @post.full
+.well= raw @post.full
 - unless @post.tag_list.empty?
 	%p
 		Tags: 
@@ -17,13 +16,4 @@
 %p.lead Оставить комментарий
 = render 'includes/comments/form_comments', f_action: nil
 
-- unless @post.root_comments.empty?
-	%ul
-		- @post.root_comments.each do |p_comment|
-			%li
-				= p_comment.body
-				= link_to 'delete', delete_comment_path(p_comment), remote: true
-				= render 'includes/comments/form_comments', f_action: p_comment.id
-				- if p_comment.has_children?
-					= render 'includes/comments/child_comment', parent_comment: p_comment
-				=# link_to 'replay', comments_post_path(replay: p_comment.id)
+%ul= render @post.root_comments unless @post.root_comments.empty?			
