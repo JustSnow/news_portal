@@ -9,6 +9,8 @@
 
 c = Category.create(:name => 'test category', :admin_user_id => 1)
 
+3.times {|n| Category.create(:name => "Category new #{n}", :admin_user_id => 1)}
+
 u = User.create(
 	:email => 't@t.ru',
   :password => '123123aA', 

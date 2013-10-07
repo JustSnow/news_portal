@@ -226,9 +226,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   OAUTH_CONFIG = YAML.load_file(Rails.root.join('config', 'oauth.yml'))
-  config.omniauth :facebook,
-    OAUTH_CONFIG['facebook']['app_id'],
-    OAUTH_CONFIG['facebook']['app_secret']
+  
+  config.omniauth :facebook, OAUTH_CONFIG['facebook']['app_id'], OAUTH_CONFIG['facebook']['app_secret'] if ENV['RAILS_ENV'] = "development"
+  config.omniauth :facebook, OAUTH_CONFIG['heroku_facebook']['app_id'], OAUTH_CONFIG['heroku_facebook']['app_secret'] if ENV['RAILS_ENV'] = "production"
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
