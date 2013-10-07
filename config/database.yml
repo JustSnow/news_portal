@@ -1,7 +1,7 @@
-prodaction:
+production:
   adapter: postgresql
   encoding: unicode
-  database: news_portal_prodaction
+  database: news_portal_production
   host: "localhost"
   pool: 5
   username: postgres

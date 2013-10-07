@@ -11,9 +11,8 @@ ActiveAdmin.register Post do
     end
     column :intro
     column :full
-    column :user
-    column :category do |post|
-      link_to post.category.name, [:edit, :admin, post.category]
+    column :user do |post|
+      post.user.email
     end
   end
 
