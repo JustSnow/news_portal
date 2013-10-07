@@ -32,6 +32,8 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'foreman'
 
+gem 'rails_12factor', group: :production
+
 gem 'awesome_nested_set'
 gem 'acts_as_commentable_with_threading'
 
