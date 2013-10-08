@@ -14,8 +14,10 @@ gem 'bootstrap-sass'
 
 gem 'jquery-rails'
 
-gem 'mysql2'
-gem 'thinking-sphinx'
+# thinking-sphinx v3 не работает с activeadmin
+# gem 'mysql2'
+# gem 'thinking-sphinx'
+gem 'thinking-sphinx', '~> 2.0.14'
 
 gem 'devise', git: 'git://github.com/plataformatec/devise.git'
 gem 'omniauth'

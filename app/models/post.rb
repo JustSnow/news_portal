@@ -25,4 +25,8 @@ class Post < ActiveRecord::Base
       when 2 then 'Одобрена'
     end
   end
+
+  define_index do
+    indexes full, title, intro
+  end
 end
