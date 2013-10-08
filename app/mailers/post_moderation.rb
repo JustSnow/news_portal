@@ -6,6 +6,6 @@ class PostModeration < ActionMailer::Base
 
   def result_moderation_post post
     @post = post
-    mail(to: @post.user.email, subject: 'Проверка статьи админом')
+    mail(to: @post.user.try(:email), subject: 'Проверка статьи админом')
   end
 end

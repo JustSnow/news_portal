@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-c = Category.create(:name => 'test category', :admin_user_id => 1)
+c = Category.create(:name => 'test category')
 
-3.times {|n| Category.create(:name => "Category new #{n}", :admin_user_id => 1)}
+3.times {|n| Category.create(:name => "Category new #{n}")}
 
 u = User.create(
 	:email => 't@t.ru',

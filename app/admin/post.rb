@@ -12,7 +12,7 @@ ActiveAdmin.register Post do
     column :intro
     column :full
     column :user do |post|
-      post.user.email
+      post.user.try(:email)
     end
   end
 
