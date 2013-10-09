@@ -15,10 +15,13 @@
 //= require bootstrap
 //= require_tree .
 //= require redactor-rails
+//= require jquery.highlight-4
 
 $(document).ready(function() {
 	$('.replay_comments').on('click', function(e) {
 		e.preventDefault();
 		$(this).next('.replay_form').slideToggle();
 	});
+
+  if($('.search-query').val().length > 0) $('.span9').highlight($('.search-query').val());
 });
