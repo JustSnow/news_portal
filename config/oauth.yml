@@ -1,6 +1,8 @@
-facebook:
-  app_id: '742037965822982'
-  app_secret: '26780ad7314212085d22d97e853648d6'
-heroku_facebook:
-  app_id: '433398343438058'
-  app_secret: '9bf1bc8b1c65d7596dfeed2c8b322679'
+development:
+  facebook:
+    app_id: '728256157201429'
+    app_secret: '55ecb26943abddfc04067fe9c32c094a'
+production:
+  facebook:
+    app_id: '433398343438058'
+    app_secret: '9bf1bc8b1c65d7596dfeed2c8b322679'
