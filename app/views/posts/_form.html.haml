@@ -30,5 +30,5 @@
   .btn-toolbar
     .btn-group
       = f.submit nil, :class => 'btn btn-primary'
-      = link_to 'Preview', (@post.id.nil?)? preview_posts_path : preview_posts_path(pots_id: @post.id), class: 'preview_post btn btn-info'
+      = link_to 'Preview', (@post.id.nil?)? preview_posts_path : preview_posts_path(post_id: @post.id), class: 'preview_post btn btn-info'
       = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn'

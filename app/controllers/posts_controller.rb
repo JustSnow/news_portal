@@ -54,14 +54,11 @@ class PostsController < ApplicationController
   end
 
   def preview
-    # @post = if params[:post_id]
-    #           Post.find(params[:post_id])
-    #         else
-    #           current_user.posts.build(params[:post])
-    #         end
-
-    return render text: params
-    @post.preview = true
+    @post = if params[:post_id]
+              Post.find(params[:post_id])
+            else
+              current_user.posts.build(params[:post])
+            end
 
     if @post.save
       redirect_to action: 'show', id: @post.id, preview: 1
@@ -140,6 +137,6 @@ class PostsController < ApplicationController
     end
 
     def find_post
-       @post = Post.find(params[:id])
+      @post = Post.find(params[:id])
     end
 end

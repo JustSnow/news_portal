@@ -27,7 +27,6 @@ $(document).ready(function() {
 
   $('.preview_post').on('click', function(e) {
     e.preventDefault();
-
     $('.posts-form').attr('action', $(this).attr('href')).submit();
   });
 });

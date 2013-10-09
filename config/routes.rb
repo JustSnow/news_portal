@@ -21,7 +21,10 @@ NewsPortal::Application.routes.draw do
       delete 'destroy_preview'
       get 'save_preview'
     end
-    get 'preview', on: :collection
-    post 'preview', on: :collection
+    collection do
+      get 'preview'
+      post 'preview'
+      put 'preview'
+    end
   end
 end

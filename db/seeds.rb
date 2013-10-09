@@ -7,9 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-c = Category.create(:name => 'test category')
-
-3.times {|n| Category.create(:name => "Category new #{n}")}
+5.times {|n| Category.create(:name => "Category new #{n}")}
 
 u = User.create(
 	:email => 't@t.ru',
@@ -23,9 +21,9 @@ a = AdminUser.create(
 	:password_confirmation => 'password'
 	)
 
-15.times do |n|
+30.times do |n|
 	p = u.posts.build(
-		:moderation => 2,
+		:moderation => rand(0..2),
 		:title => "test title #{n}", 
 		:intro => "test intro #{n} 
 							Кнопки с функционалом checkbox или radio
@@ -39,7 +37,7 @@ a = AdminUser.create(
 							когда только одна кнопка может быть активирована, 
 							или как флажок, когда ряд кнопок может быть активирован. 
 							Ознакомьтесь с Javascript плагином управляющим этим действием.", 
-		:category_id => c.id
+		:category_id => rand(1..5)
 	)
 
 	p.save
