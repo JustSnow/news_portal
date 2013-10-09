@@ -5,7 +5,8 @@ class Post < ActiveRecord::Base
   # 2 - принято модератором
 
   default_scope { order('created_at desc') }
-  scope :accepted_posts, -> { where('moderation = ?', 2) }
+  scope :accepted_posts, -> { where('moderation = ? AND preview = ?', 2, false) }
+  scope :not_preview, -> { where('preview = ?', false) }
 
   acts_as_taggable
   acts_as_commentable

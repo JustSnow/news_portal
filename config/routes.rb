@@ -16,6 +16,12 @@ NewsPortal::Application.routes.draw do
   delete 'delete_comment/:id', to: 'posts#delete_comment', as: :delete_comment
 
   resources :posts do
-    post 'comments', on: :member
+    member do
+      post 'comments'
+      delete 'destroy_preview'
+      get 'save_preview'
+    end
+    get 'preview', on: :collection
+    post 'preview', on: :collection
   end
 end

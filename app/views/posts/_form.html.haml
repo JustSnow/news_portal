@@ -1,4 +1,4 @@
-= form_for @post, :html => { :class => 'form-horizontal' } do |f|
+= form_for @post, :html => { :class => 'form-horizontal posts-form' } do |f|
   -if @post.errors.any?
     .alert.alert-error
       %h3
@@ -27,6 +27,8 @@
     = f.label :tag_list, "Tags (separated by commas)"
     .controls
       = f.text_field :tag_list
-  .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn'
+  .btn-toolbar
+    .btn-group
+      = f.submit nil, :class => 'btn btn-primary'
+      = link_to 'Preview', (@post.id.nil?)? preview_posts_path : preview_posts_path(pots_id: @post.id), class: 'preview_post btn btn-info'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn'

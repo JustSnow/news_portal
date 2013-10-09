@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   before_filter :check_user, except: [:index, :show]
-  before_filter :find_post, except: [:index, :new, :create, :feed, :delete_comment]
+  before_filter :find_post, except: [:index, :new, :create, :feed, :delete_comment, :preview]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = current_user.posts
+    @posts = current_user.posts.not_preview
 
     respond_to do |format|
       format.html # index.html.erb
@@ -53,6 +53,37 @@ class PostsController < ApplicationController
     end
   end
 
+  def preview
+    # @post = if params[:post_id]
+    #           Post.find(params[:post_id])
+    #         else
+    #           current_user.posts.build(params[:post])
+    #         end
+
+    return render text: params
+    @post.preview = true
+
+    if @post.save
+      redirect_to action: 'show', id: @post.id, preview: 1
+    else
+      render 'edit'
+    end
+  end
+
+  def save_preview
+    @post.preview = false
+    if @post.save
+      redirect_to [:edit, @post], notice: "Post #{@post.title} was successfully created."
+    else
+      redirect_to action: 'show', id: @post.id, preview: 1
+    end
+  end
+
+  def destroy_preview
+    @post.update_attribute(:preview, false)
+    redirect_to [:edit, @post]
+  end
+
   # PUT /posts/1
   # PUT /posts/1.json
   def update
@@ -71,6 +102,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post.destroy
+    redirect_to posts_path if user_signed_in?
   end
 
   def feed

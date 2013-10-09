@@ -24,4 +24,10 @@ $(document).ready(function() {
 	});
 
   if($('.search-query').val().length > 0) $('.span9').highlight($('.search-query').val());
+
+  $('.preview_post').on('click', function(e) {
+    e.preventDefault();
+
+    $('.posts-form').attr('action', $(this).attr('href')).submit();
+  });
 });
