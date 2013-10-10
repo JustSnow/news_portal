@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :check_user, except: [:index, :show]
   before_filter :find_post, except: [:index, :new, :create, :feed, :delete_comment, :preview]
+  before_filter :all_categories
 
   # GET /posts
   # GET /posts.json
@@ -138,5 +139,9 @@ class PostsController < ApplicationController
 
     def find_post
       @post = Post.find(params[:id])
+    end
+
+    def all_categories
+      @categories = Category.find(:all)
     end
 end
