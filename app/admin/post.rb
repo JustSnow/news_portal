@@ -1,6 +1,8 @@
 ActiveAdmin.register Post do
   menu :priority => 2
 
+  scope_to :current_user, if: proc { admin_user_signed_in? }
+
   index do
     column :id
     column :moderation do |post|
@@ -14,6 +16,7 @@ ActiveAdmin.register Post do
     column :user do |post|
       post.user.try(:email)
     end
+    default_actions
   end
 
   filter :created_at
@@ -21,6 +24,10 @@ ActiveAdmin.register Post do
   form partial: "form"
 
   controller do
+    def scoped_collection
+      Post.includes(:user, :category)
+    end
+
     def new
       @post = current_admin_user.posts.build
     end
