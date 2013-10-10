@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
   def index
     @posts = Post.includes(:category)
+    @categories = Category.find(:all)
+
     @posts = Category.find(params[:category]).posts if params[:category]
     @posts = Post.tagged_with(params[:tag]) if params[:tag]
     
