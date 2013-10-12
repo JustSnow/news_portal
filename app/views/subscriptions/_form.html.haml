@@ -1,0 +1,17 @@
+= form_for @subscription, :html => { :class => 'form-horizontal posts-form' } do |f|
+	- if @subscription.errors.any?
+		.alert.alert-error
+			%h3= pluralize(@subscription.errors.count, 'error') 
+			%ul
+				-@subscription.errors.full_messages.each do |e|
+					%li= e
+	.control-group
+		= f.label :name, :class => 'control-label'
+		.controls= f.text_field :name, :class => 'text_field'
+	.control-group
+		= f.label :category_id, :class => 'control-label'
+		.controls= f.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] })
+	.btn-toolbar
+		.btn-group
+			= f.submit nil, :class => 'btn btn-primary'
+			= link_to t('.cancel', :default => t("helpers.links.cancel")), subscriptions_path, :class => 'btn'

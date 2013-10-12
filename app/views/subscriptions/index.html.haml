@@ -1,0 +1,9 @@
+%h3= "#{current_user.email} подписки"
+= link_to 'Создать новую подписку', new_subscription_path, class: 'btn btn-info'
+%table.table.table-bordered
+	%tr
+		%th Подписка
+		%th Категория
+		%th Подписан с
+		%th
+	= render @subscriptions

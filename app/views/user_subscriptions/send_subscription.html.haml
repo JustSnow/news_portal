@@ -1,0 +1,6 @@
+- @user.subscriptions.each do |subscription|
+	- subscription.category.posts.each do |post|
+		%h3= post.title
+		%p= post.categories.first.name
+		.post_intro= post.intro
+		%p= link_to 'Full', post

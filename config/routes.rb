@@ -18,4 +18,6 @@ NewsPortal::Application.routes.draw do
   resources :posts do
     post 'comments', on: :member
   end
+
+  resources :subscriptions, expect: [:show]
 end

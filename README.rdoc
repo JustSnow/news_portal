@@ -11,3 +11,10 @@ test user front:
 test user admin:
   * login - admin@example.com
   * password - password
+
+== Cron
+	whenever --set environment=development --update-crontab store
+	Для development
+
+	crontab -l
+	проверить очередь заданий
