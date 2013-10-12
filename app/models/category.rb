@@ -2,7 +2,7 @@
 class Category < ActiveRecord::Base
   default_scope { order('created_at desc') }
 
-  has_many :posts, dependent: :destroy
+  has_and_belongs_to_many :posts
 
   attr_accessible :name
 

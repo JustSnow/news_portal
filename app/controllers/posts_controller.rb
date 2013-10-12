@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = current_user.posts.not_preview
+    @posts = current_user.posts.includes(:categories)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +26,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = current_user.posts.build
+    @categories = Category.all
 
     respond_to do |format|
       format.html # new.html.erb

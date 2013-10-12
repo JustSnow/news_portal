@@ -6,18 +6,17 @@ class Post < ActiveRecord::Base
 
   default_scope { order('created_at desc') }
   scope :accepted_posts, -> { where('moderation = ? AND preview = ?', 2, false) }
-  scope :not_preview, -> { where('preview = ?', false) }
 
   acts_as_taggable
   acts_as_commentable
 
   belongs_to :user
   belongs_to :admin
-  belongs_to :category
+  has_and_belongs_to_many :categories
 
-  attr_accessible :full, :intro, :title, :category_id, :tag_list, :moderation
+  attr_accessible :full, :intro, :title, :category_ids, :tag_list, :moderation
 
-  validates_presence_of :title, :intro, :full, :category_id
+  validates_presence_of :title, :intro, :full, :category_ids
 
   def moderation_name number_mod
     case number_mod

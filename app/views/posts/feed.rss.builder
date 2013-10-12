@@ -8,7 +8,7 @@ xml.rss :version => "2.0" do
     for post in @posts
       xml.item do
         xml.title post.title
-        xml.category post.category.name
+        # xml.category post.category.name
         xml.description post.intro
         xml.pubDate post.created_at.to_s(:rfc822)
         xml.link post_url(post)

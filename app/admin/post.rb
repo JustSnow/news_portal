@@ -39,7 +39,7 @@ ActiveAdmin.register Post do
 
   controller do
     def scoped_collection
-      Post.includes(:user, :category)
+      Post.includes(:user, :categories)
     end
 
     def new
