@@ -53,34 +53,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def preview
-    @post = if params[:post_id]
-              Post.find(params[:post_id])
-            else
-              current_user.posts.build(params[:post])
-            end
-
-    if @post.save
-      redirect_to action: 'show', id: @post.id, preview: 1
-    else
-      render 'edit'
-    end
-  end
-
-  def save_preview
-    @post.preview = false
-    if @post.save
-      redirect_to [:edit, @post], notice: "Post #{@post.title} was successfully created."
-    else
-      redirect_to action: 'show', id: @post.id, preview: 1
-    end
-  end
-
-  def destroy_preview
-    @post.update_attribute(:preview, false)
-    redirect_to [:edit, @post]
-  end
-
   # PUT /posts/1
   # PUT /posts/1.json
   def update
