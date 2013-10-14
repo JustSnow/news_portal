@@ -1,18 +1,27 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: 'form-horizontal'}) do |f|
+%h2 Авторизация
+= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: 'form-inline'}) do |f| 
+  = devise_error_messages!
   .control-group
-    = f.label :email, class: 'control-label'
     .controls
-      = f.email_field :email, :autofocus => true
+      .input-prepend
+        %span.add-on.hasTooltip{data: {rel: 'tooltip', title: 'Enter you e-mail'}}
+          %i.icon-user
+        = f.email_field :email, {:autofocus => true, placeholder: 'user e-mail'}
   .control-group
-    = f.label :password, class: 'control-label'
     .controls
-      = f.password_field :password
+      .input-prepend
+        %span.add-on.hasTooltip{data: {rel: 'tooltip', title: 'Enter you password'}}
+          %i.icon-lock
+        = f.password_field :password
   .control-group
     .controls
       - if devise_mapping.rememberable?
-        = f.check_box :remember_me
-        = f.label :remember_me
-      .btn-group
-        = f.submit "Sign in", class: 'btn'
-    = render "devise/shared/links"
+        %label.checkbox
+          = f.check_box :remember_me
+          Запомнить меня
+  .control-group
+    .controls
+      .btn-group.pull-left
+      = f.submit "Авторизоваться", class: 'btn btn-primary btn-large'
+
+  = render "devise/shared/links"

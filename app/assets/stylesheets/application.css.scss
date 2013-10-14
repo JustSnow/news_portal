@@ -28,3 +28,21 @@
   }
   .highlight { background-color: yellow }
 }
+
+.authorithation_page {
+  background-color: #142849;
+  background-image: -webkit-gradient(radial,center center,0,center center,460,from(#165387),to(#142849));
+  background-image: -webkit-radial-gradient(circle,#165387,#142849);
+  background-image: -moz-radial-gradient(circle,#165387,#142849);
+  background-image: -o-radial-gradient(circle,#165387,#142849);
+  background-repeat: no-repeat;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  display: inline-block;
+  color: #fff;
+  .wrap_authorithation-from {
+    width: 300px;
+    margin: 20% auto;
+  }
+}

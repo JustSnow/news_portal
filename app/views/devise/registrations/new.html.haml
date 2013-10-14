@@ -1,17 +1,26 @@
 %h2 Sign up
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, :autofocus => true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %div= f.submit "Sign up"
-= render "devise/shared/links"
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: 'form-inline'}) do |f|
+	= devise_error_messages!
+	.control-group
+		.controls
+			.input-prepend
+				%span.add-on.hasTooltip{data: {rel: 'tooltip', title: 'Enter you e-mail'}}
+					%i.icon-user
+				= f.email_field :email, :autofocus => true
+	.control-group
+		.controls
+			.input-prepend
+				%span.add-on.hasTooltip{data: {rel: 'tooltip', title: 'Enter you password'}}
+					%i.icon-lock
+				= f.password_field :password
+	.control-group
+		.controls
+			.input-prepend
+				%span.add-on.hasTooltip{data: {rel: 'tooltip', title: 'Enter you password'}}
+					%i.icon-ok
+				= f.password_field :password_confirmation
+	.control-group
+		.controls
+			.btn-group.pull-left= f.submit "Sign up", class: 'btn btn-primary btn-large'
+%div{style: 'margin-top: 80px;'}
+	= render "devise/shared/links"

@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  layout :layout_by_resource
+
   def index
     @posts = Post.includes(:categories)
 
@@ -11,4 +13,13 @@ class WelcomeController < ApplicationController
       @posts = @posts.accepted_posts.paginate(page: params[:page], per_page: 10)
     end
   end
+  
+  protected
+    def layout_by_resource
+      if devise_controller?
+        "authorithation"
+      else
+        "application"
+      end
+    end
 end

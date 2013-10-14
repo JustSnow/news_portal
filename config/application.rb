@@ -67,5 +67,13 @@ module NewsPortal
 
     #for heroku
     config.assets.initialize_on_precompile = false
+
+    config.to_prepare do
+      Devise::SessionsController.layout "authorithation"
+      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "authorithation" }
+      Devise::ConfirmationsController.layout "authorithation"
+      Devise::UnlocksController.layout "authorithation"            
+      Devise::PasswordsController.layout "authorithation"        
+    end
   end
 end
