@@ -1,0 +1,8 @@
+%h1 Новый пост на нашем блоге
+%h3= @post.title
+%p= @category.name
+.post_intro= @post.intro
+%p= link_to 'Full', @post
+%p
+	Для того чтобы отписаться, Вы можете удалить подписку в 
+	= link_to 'личном кабинете', subscriptions_path

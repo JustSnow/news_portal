@@ -5,7 +5,8 @@ class Post < ActiveRecord::Base
   # 2 - принято модератором
 
   default_scope { order('created_at desc') }
-  scope :accepted_posts, -> { where('moderation = ? AND preview = ?', 2, false) }
+  scope :accepted_posts, -> { where('moderation = ?', 2) }
+  scope :today_posts, -> { where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day) }
 
   acts_as_taggable
   acts_as_commentable

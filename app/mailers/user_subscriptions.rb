@@ -6,6 +6,14 @@ class UserSubscriptions < ActionMailer::Base
 
   def send_subscription user
   	@user = user
-  	mail(to: @user.email, subject: 'Sybsciptions')
+  	mail(to: @user.email, subject: 'Subsciptions')
+  end
+
+  def send_post_user_signed user, post, category
+  	@user = user
+  	@post = post
+  	@category = category
+
+  	mail(to: @user.email, subject: 'Subscriptions')
   end
 end

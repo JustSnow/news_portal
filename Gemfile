@@ -41,7 +41,7 @@ gem 'rails_12factor', group: :production
 gem 'awesome_nested_set'
 gem 'acts_as_commentable_with_threading'
 
-gem 'whenever', require: false
+# gem 'whenever', require: false
 
 group :development do
   gem 'quiet_assets'

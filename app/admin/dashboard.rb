@@ -10,7 +10,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         para "Count Posts (#{Post.all.size})"    
         para "Count User (#{User.all.size})"
-        para "Count User Today (#{User.where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).size})"
+        para "Count User Today (#{User.today_users.size})"
       end
     end
   end # content

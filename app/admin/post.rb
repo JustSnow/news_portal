@@ -34,6 +34,17 @@ ActiveAdmin.register Post do
   member_action :moderation_admin_post, method: :get do
     @post = Post.find(params[:id])
     @post.update_attribute(:moderation, params[:status])
+    
+    # если админ одобрил пост, он считается новым и отсылается всем подписанным на его категорию юзерам
+    if params[:status].to_i == 2
+      # пробигаемся по всем категориям поста, т.к. они принадлежат многие ко многим к категориям
+      @post.categories.each do |category|
+        category.subscriptions.each do |subscr|
+          UserSubscriptions.delay.send_post_user_signed(subscr.user, @post, category)
+        end
+      end
+    end
+
     redirect_to admin_posts_path, notice: "Статус для поста #{@post.title} успешно изменен"
   end
 
