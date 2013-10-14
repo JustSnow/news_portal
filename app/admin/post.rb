@@ -1,4 +1,8 @@
 ActiveAdmin.register Post do
+  # post status
+  # 0 - ждет модерации
+  # 1 - отклонено модератором
+  # 2 - принято модератором
   menu :priority => 2
 
   scope_to :current_user, if: proc { admin_user_signed_in? }
@@ -6,7 +10,11 @@ ActiveAdmin.register Post do
   index do
     column :id
     column :moderation do |post|
-      post.moderation_name post.moderation
+      case post.moderation.to_i
+        when 0 then raw "#{link_to('Отклонить', moderation_admin_post_admin_post_path(post, status: 1))} #{link_to('Одобрить', moderation_admin_post_admin_post_path(post, status: 2))}" 
+        when 1 then link_to 'Одобрить', moderation_admin_post_admin_post_path(post, status: 2)
+        when 2 then link_to 'Отклонить', moderation_admin_post_admin_post_path(post, status: 1)
+      end
     end
     column :title do |post|
       link_to post.title, [:edit, :admin, post]
@@ -23,9 +31,15 @@ ActiveAdmin.register Post do
 
   form partial: "form"
 
+  member_action :moderation_admin_post, method: :get do
+    @post = Post.find(params[:id])
+    @post.update_attribute(:moderation, params[:status])
+    redirect_to admin_posts_path, notice: "Статус для поста #{@post.title} успешно изменен"
+  end
+
   controller do
     def scoped_collection
-      Post.includes(:user, :category)
+      Post.includes(:user, :categories)
     end
 
     def new

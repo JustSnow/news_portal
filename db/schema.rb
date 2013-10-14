@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131009085956) do
+ActiveRecord::Schema.define(:version => 20131012171717) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(:version => 20131009085956) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "categories_posts", :force => true do |t|
+    t.integer "category_id"
+    t.integer "post_id"
+  end
+
+  add_index "categories_posts", ["category_id"], :name => "index_categories_posts_on_category_id"
+  add_index "categories_posts", ["post_id"], :name => "index_categories_posts_on_post_id"
+
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",   :default => 0
     t.string   "commentable_type", :default => ""
@@ -76,14 +84,12 @@ ActiveRecord::Schema.define(:version => 20131009085956) do
     t.integer  "moderation",    :default => 0
     t.integer  "user_id"
     t.integer  "admin_user_id"
-    t.integer  "category_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
     t.boolean  "preview",       :default => false
   end
 
   add_index "posts", ["admin_user_id"], :name => "index_posts_on_admin_user_id"
-  add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "redactor_assets", :force => true do |t|
@@ -102,6 +108,17 @@ ActiveRecord::Schema.define(:version => 20131009085956) do
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], :name => "idx_redactor_assetable"
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_redactor_assetable_type"
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "subscriptions", ["category_id"], :name => "index_subscriptions_on_category_id"
+  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

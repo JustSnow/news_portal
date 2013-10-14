@@ -29,4 +29,14 @@ $(document).ready(function() {
     e.preventDefault();
     $('.posts-form').attr('action', $(this).attr('href')).submit();
   });
+
+  $('.show_preview').on('click', function(e) {
+  	e.preventDefault();
+  	var tags = $('#post_tag_list').val();
+
+  	$('.title_preview').text($('#post_title').val());
+  	$('.full_preview').html($('#post_full').redactor('get'));
+
+  	if(tags.length > 0) $('.tags_preview').text('Tags: '+tags);
+  });
 });

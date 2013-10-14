@@ -1,4 +1,7 @@
 %li
+	%p
+		= (comment.try(:user).nil?)? 'Гость' : comment.user.email
+		%span.label.label-info= comment.created_at
 	= comment.body
 	= link_to 'delete', delete_comment_path(comment), method: :delete, confirm: 'Are you shure?', class: 'delete_comment', remote: true if admin_user_signed_in?
 	%br

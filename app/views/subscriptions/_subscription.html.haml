@@ -1,0 +1,5 @@
+%tr
+	%td= subscription.name
+	%td= subscription.category.name
+	%td= subscription.created_at.strftime('%d.%m.%Y')
+	%td= link_to 'delete', subscription, method: :delete, confirm: 'Are you shure?'

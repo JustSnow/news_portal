@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
   before_filter :check_user, except: [:index, :show]
   before_filter :find_post, except: [:index, :new, :create, :feed, :delete_comment, :preview]
-  before_filter :all_categories
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = current_user.posts.not_preview
+    @posts = current_user.posts.includes(:categories)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,6 +26,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = current_user.posts.build
+    @categories = Category.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -52,34 +52,6 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def preview
-    @post = if params[:post_id]
-              Post.find(params[:post_id])
-            else
-              current_user.posts.build(params[:post])
-            end
-
-    if @post.save
-      redirect_to action: 'show', id: @post.id, preview: 1
-    else
-      render 'edit'
-    end
-  end
-
-  def save_preview
-    @post.preview = false
-    if @post.save
-      redirect_to [:edit, @post], notice: "Post #{@post.title} was successfully created."
-    else
-      redirect_to action: 'show', id: @post.id, preview: 1
-    end
-  end
-
-  def destroy_preview
-    @post.update_attribute(:preview, false)
-    redirect_to [:edit, @post]
   end
 
   # PUT /posts/1
@@ -139,9 +111,5 @@ class PostsController < ApplicationController
 
     def find_post
       @post = Post.find(params[:id])
-    end
-
-    def all_categories
-      @categories = Category.find(:all)
     end
 end

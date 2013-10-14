@@ -10,6 +10,7 @@
 config/database.yml
 # config/oauth.yml
 db/sphinx
+public/system/redactor_assets/*
 
 # Ignore all logfiles and tempfiles.
 log/*
