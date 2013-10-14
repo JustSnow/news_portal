@@ -11,9 +11,12 @@
 		%smal 
 			Для более полного функционала подписки необходимо
 			= link_to 'авторизоваться', new_user_session_path
+
+- @categories = Category.all
 - if !@categories.empty?
 	.well.sidebar-nav.sidebar-nav-fixed
 		%p.lead Категории
 		%ul.nav.nav-list
-			- @categories.each do |category|
-				%li= link_to category.name, root_path(category: category.id)
+			- cache(@categories) do
+				- @categories.each do |category|
+					%li= link_to category.name, root_path(category: category.id)

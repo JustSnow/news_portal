@@ -1,2 +1,5 @@
-= render partial: 'post', collection: @posts, as: :post
-= will_paginate @posts
+- if @posts.empty?
+  %p.lead Для данной категории материалов не создано
+- else
+  = render partial: 'post', collection: @posts, as: :post
+  = will_paginate @posts

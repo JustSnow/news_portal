@@ -124,7 +124,7 @@ ActiveAdmin.setup do |config|
   # Active Admin resources and pages from here.
   #
   # config.before_filter :do_something_awesome
-  config.skip_before_filter :all_categories
+  # config.skip_before_filter :all_categories
 
 
   # == Register Stylesheets & Javascripts
