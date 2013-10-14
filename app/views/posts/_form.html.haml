@@ -18,9 +18,13 @@
         .controls
           = f.text_field :title, :class => 'text_field'
       .control-group
-        = f.label :category_ids, 'Категория', {class: 'control-label'}
+        =# f.label :category_ids, 'Категория', {class: 'control-label'}
         .controls
-          = f.collection_select(:category_ids, @categories, :id, :name)
+          =# f.collection_select(:category_ids, @categories, :id, :name)
+          - for category in Category.find(:all) do
+            = label_tag 'post[category_ids][]', class: 'checkbox inline' do
+              = check_box_tag "post[category_ids][]", category.id, @post.categories.include?(category)
+              = category.name
       .control-group
         = f.label :intro, :class => 'control-label'
         .controls
